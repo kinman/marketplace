@@ -12,10 +12,10 @@ class V1::CustomersController < ApplicationController
     customer = Customer.create(params.permit(:name))
 
     if customer.new_record?
-      render(json: {error_messages: customer.errors.full_messages}, status: 422)
-    else
-      render(nothing: true, status: 201)
+      render(json: {error_messages: customer.errors.full_messages}, status: 422) and return
     end
+
+    render(nothing: true, status: 201)
   end
 
   def update
