@@ -9,7 +9,7 @@ class V1::OrdersController < ApplicationController
   def show
     @order = @customer.orders.find_by_id(params[:id])
 
-    render(nothing: true, status: 404) unless @order
+    render(nothing: true, status: 404, location: v1_order_path(@order)) unless @order
   end
 
   def create

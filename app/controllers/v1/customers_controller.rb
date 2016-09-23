@@ -15,7 +15,7 @@ class V1::CustomersController < ApplicationController
       render(json: {error_messages: customer.errors.full_messages}, status: 422) and return
     end
 
-    render(nothing: true, status: 201)
+    render(nothing: true, status: 201, location: v1_customer_path(customer))
   end
 
   def update

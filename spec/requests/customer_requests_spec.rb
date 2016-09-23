@@ -37,6 +37,9 @@ describe "Customer requests" do
       post "/v1/customers", {name: "nik"}.to_json, headers
 
       expect(response.response_code).to eq(201)
+
+      c = Customer.find_by(name: "nik")
+      expect(response.headers["location"]).to eq "/v1/customers/#{c.id}"
     end
 
     it "responds 422 if parameters aren't valid" do
