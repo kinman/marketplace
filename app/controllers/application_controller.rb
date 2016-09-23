@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
-  
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   rescue_from Exception, with: :server_error
-  
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   def not_found
     render(nothing: true, status: 404)
   end
